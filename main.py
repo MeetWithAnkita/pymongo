@@ -1,9 +1,13 @@
 import pymongo
 
+connectionstring = "mongodb+srv://ankitadas22156_db_user:ankitadas%4022156@cluster0.rqxjcm1.mongodb.net/"
+#mongodb atlas password: ankitadas@22156
+# mongodb username: ankitadas22156@gmail.com [ankitadas22156_db_user]
 if __name__ == '__main__':
     # making connection with mongoclient
-    client = pymongo.MongoClient('mongodb://localhost:27017/')
+    client = pymongo.MongoClient(connectionstring)
     # getting database 
+
     db = client['test-database'] #"test-database" is a database ==> Folder
     # A collection is a group of documents stored in MongoDB,
     #  and can be thought of as roughly the equivalent of a table
