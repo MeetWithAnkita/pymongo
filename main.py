@@ -1,8 +1,10 @@
 import pymongo
 
 connectionstring = "mongodb+srv://ankitadas22156_db_user:ankitadas%4022156@cluster0.rqxjcm1.mongodb.net/"
-#mongodb atlas password: ankitadas@22156
+#mongodb atlas password: ankitadas@22156    # "@" ==after decode==>> "%40"
 # mongodb username: ankitadas22156@gmail.com [ankitadas22156_db_user]
+
+
 if __name__ == '__main__':
     # making connection with mongoclient
     client = pymongo.MongoClient(connectionstring)
@@ -16,6 +18,7 @@ if __name__ == '__main__':
 
     #    collection = db['test-collection']
     posts = db.posts  #posts ==> folder under db[test-database]
+    
     post_id = posts.insert_one({"p":1}).inserted_id  #document store in .json file 
     print(post_id)
 

@@ -14,6 +14,28 @@ def insert_document():
     student_id = collection.insert_one(student_info).inserted_id
     print(f"Student Id: {student_id} has been created. ")
 
+def read_documents(): 
+    myStudents = collection.find({"section" : "MCA1B"})
+    for student in myStudents: 
+        print(student)
+
+    # myStudents = collection.find_one({"section" : "MCA1B"})
+    # for student in myStudents.values():
+    #     print(student)
+
+def update_documets():
+    collection.update_one({"section":"MCA2B"},{'$set':{"section":"MCA2B[U]"}})
+    collection.update_one({"section":"MCA2B[U]"},{'$inc':{"Mathematics": -2}})
+    # 1st case: section modify 
+    # 2nd case: using modify section name , increse -2 number of mathematics
+
+def delete_document():
+    # r = collection.delete_one({"section":"MCA1B", "name": "Raka Mandal"})
+    # print(r.deleted_count) #delete object = r
+
+    r = collection.delete_many({})
+    print(r.deleted_count) #delete object = r
+
 if __name__ == '__main__':
     client = pymongo.MongoClient(connectionstring)
     db = client['Rai_Academy']
@@ -29,9 +51,17 @@ if __name__ == '__main__':
 
     # 2.Read: 
     # Reading a collection 
-    # myStudents = collection.find({})
-    myStudents = collection.find({"section": "MCA1B", "name":"Raka Mandal"})
-    for student in myStudents:
-        print(student)
-    
-    
+
+    # //////////////////////////////////////////////////////////////////////
+    #  two types of find() funtion : 
+    # a. collection.find() ==>> that gives output of value and attribute names , if give criteria [like {"section": "MCA1B"} ] then show all documents , not need to use mystudents.values()
+    # b. collection.find_one() ==>> that gives output of only attribute bcz using these function these become "ONE dictionary". then have to use mystudents.values() then show only value but only first document not all 
+    # //////////////////////////////////////////////////////////////////////
+
+    # read_documents()
+
+    # 3.Update: 
+    # update_documets()
+
+    # 4.Delete: 
+    # delete_document()
